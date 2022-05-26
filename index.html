@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+    <!--リアルDOM タグをみるだけではjavascriptがあるかわからないデメリット-->
+    <a id="google_link">googleへのリンク</a>
+
+
+
+    <div id="app"><!--仮想DOMの範囲-->
+        {{ message }}　<!--呼び出し　なみかっこ２つマスタシュ構文-->
+
+        <!--<a id="{{ google }}">googleへのリンク</a>    タグの中には{{}}は使えない-->
+        <!--<a v-bind:href="google">googleへのリンク</a> -->
+        <a :href="google">googleへのリンク</a><!--v-bindは省略できる-->
+  
+        <br>
+        オブジェクト.キー
+        <a :href ="book.url">{{book.title}}</a>
+  
+  
+    </div>
+
+      <script>
+          //vue クラス->インスタンス化（実体）new
+          //let app = new Vue({
+
+          //}); 
+            let app = new Vue({
+            el: '#app',  //仮想DOMにする範囲　el や　dataはvue.jsであらかじめ準備されているAPI（コンセントのなかみのしくみのこと）
+            data(){ 　//初期設定
+                return{
+                    message: 'Hello Vue!', //キー(key):値(value)
+                    google :　'http://google.com',
+                    book: {
+                        title:'本のタイトル',
+                        url:'http://google.com'
+                    }
+                    
+                }
+            }
+            })
+
+
+
+
+
+            //直接DOM操作
+            //idを指定(idが変わればコードの変更が必要）
+            const googleLink = document.getElementById('google_link');
+            googleLink.href='http://google.com';
+
+
+      </script>
+</body>
+</html>
